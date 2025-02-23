@@ -99,8 +99,9 @@ class MyPromise {
 	}
 
 	finally(onFinally) {
+		const originFinally = onFinally || ((value) => value);
 		onFinally = (res) => {
-			onFinally();
+			originFinally();
 			return res;
 		};
 		return this.then(onFinally, onFinally);
